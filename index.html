@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-lang-key="pageTitle">Для Мамы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="lang-switcher">
+    <button data-lang="en">EN</button>
+    <button data-lang="uk">UA</button>
+  </div>
+
+  <div class="animation-container">
+    <div class="chamomile">
+      <div class="center"></div>
+      <div class="petal petal1"></div>
+      <div class="petal petal2"></div>
+      <div class="petal petal3"></div>
+      <div class="petal petal4"></div>
+      <div class="petal petal5"></div>
+      <div class="petal petal6"></div>
+      <div class="petal petal7"></div>
+      <div class="petal petal8"></div>
+    </div>
+  </div>
+
+  <div id="background-flowers-container">
+    <!-- Фоновые цветы будут добавлены сюда с помощью JavaScript -->
+  </div>
+
+  <div id="falling-roses-container">
+    <!-- Падающие розы будут добавлены сюда -->
+  </div>
+
+  <div id="mothers-day-message" data-lang-key="mothersDayMessageText">
+    С Днем Матери!
+  </div>
+
+  <div class="main-content">
+    <img src="mom-photo.jpg" alt="Фото Мамы" class="mom-photo" data-lang-key="momPhotoAlt"
+      data-alt-lang-key="momPhotoAlt">
+    <div class="social-links">
+      <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-icon instagram"
+        aria-label="Instagram" data-aria-label-lang-key="instagramAriaLabel"><img src="instagram-icon.png"
+          alt="Instagram"></a>
+
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon linkedin"
+        aria-label="LinkedIn" data-aria-label-lang-key="linkedinAriaLabel"><img src="linkedin-icon.png"
+          alt="LinkedIn"></a>
+    </div>
+    <button id="compliment-button" data-lang-key="complimentButtonText">Сказать комплимент!</button>
+    <p id="compliment-text"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

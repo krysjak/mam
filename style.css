@@ -1,0 +1,523 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e6ffe6;
+  /* Light green background */
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.lang-switcher {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  /* Выше большинства элементов */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.lang-switcher button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.lang-switcher button:hover {
+  background-color: #4cae4c;
+}
+
+.lang-switcher button.active {
+  background-color: #3e8e3e;
+  font-weight: bold;
+}
+
+.animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cce5cc;
+  /* Soft mint green for initial animation */
+  z-index: 100;
+  transform-origin: 0 0;
+  /* Для корректного перемещения в угол */
+  animation: container-move-to-bg 1.5s forwards;
+  animation-delay: 2.5s;
+  /* Задержка после появления цветка */
+}
+
+.animation-container.in-corner {
+  cursor: pointer;
+  /* pointer-events: auto;  Убедимся, что клики проходят */
+}
+
+@keyframes container-move-to-bg {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    background-color: #cce5cc;
+  }
+
+  100% {
+    transform: translate(20px, 20px) scale(0.25);
+    /* Перемещаем в левый верхний угол и уменьшаем */
+    opacity: 0.8;
+    background-color: transparent;
+    /* Делаем фон контейнера прозрачным */
+  }
+}
+
+.chamomile {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform: scale(0);
+  /* Начальное состояние для анимации */
+  opacity: 0;
+  animation: flower-appear 2s forwards;
+  animation-delay: 0.5s;
+  /* Небольшая задержка перед появлением цветка */
+}
+
+@keyframes flower-appear {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.chamomile .center {
+  width: 70px;
+  height: 70px;
+  background-color: #FFD700;
+  /* Gold - keeping yellow for contrast */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.chamomile .petal {
+  width: 35px;
+  height: 90px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  /* Овальная форма лепестка */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -17.5px;
+  /* -(width/2) */
+  margin-top: -90px;
+  /* -(height) */
+  transform-origin: 50% 100%;
+  /* Точка вращения - нижний центр лепестка */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.petal1 {
+  transform: rotate(0deg);
+}
+
+.petal2 {
+  transform: rotate(45deg);
+}
+
+.petal3 {
+  transform: rotate(90deg);
+}
+
+.petal4 {
+  transform: rotate(135deg);
+}
+
+.petal5 {
+  transform: rotate(180deg);
+}
+
+.petal6 {
+  transform: rotate(225deg);
+}
+
+.petal7 {
+  transform: rotate(270deg);
+}
+
+.petal8 {
+  transform: rotate(315deg);
+}
+
+/* Стили для фоновых цветов */
+#background-flowers-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  /* Ниже основного контента и начальной анимации */
+  pointer-events: none;
+  /* Чтобы не мешали кликам */
+}
+
+.background-flower {
+  position: absolute;
+  width: 50px;
+  /* Меньше основной ромашки */
+  height: 50px;
+  opacity: 0;
+  /* Начальное состояние для анимации появления */
+  animation: fadeInFlower 2s forwards;
+  transition: left 1.5s ease-out, top 1.5s ease-out;
+}
+
+.background-flower .center {
+  width: 15px;
+  height: 15px;
+  background-color: #fdfd96;
+  /* Светло-желтый */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.background-flower .petal {
+  width: 10px;
+  height: 25px;
+  background-color: #ffb6c1;
+  /* LightPink */
+  border: 1px solid #f8a7b5;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -25px;
+  transform-origin: 50% 100%;
+}
+
+/* Разные типы фоновых цветов */
+/* Тип 1: Тюльпан (упрощенный) */
+.flower-tulip .petal {
+  width: 18px;
+  height: 35px;
+  border-radius: 20px 20px 0 0;
+  /* Форма лепестка тюльпана */
+  margin-left: -9px;
+  margin-top: -30px;
+}
+
+.flower-tulip .center {
+  width: 10px;
+  height: 10px;
+  background-color: #4a3000;
+  /* Темный центр */
+}
+
+.flower-tulip.color1 .petal {
+  background-color: #ff4500;
+  border-color: #cc3700;
+}
+
+.flower-tulip.color2 .petal {
+  background-color: #ffff00;
+  border-color: #cccc00;
+}
+
+.flower-tulip.color3 .petal {
+  background-color: #ffc0cb;
+  border-color: #e0a8b3;
+}
+
+/* Тип 2: Простая роза/бутон */
+.flower-rosebud .petal {
+  width: 15px;
+  height: 20px;
+  border-radius: 50% 50% 10% 10% / 80% 80% 20% 20%;
+  /* Более округлые и сходящиеся лепестки */
+  margin-left: -7.5px;
+  margin-top: -15px;
+  /* Лепестки ближе к центру */
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.flower-rosebud .center {
+  width: 12px;
+  height: 12px;
+  background-color: #3D9140;
+  /* Зеленый центр */
+}
+
+.flower-rosebud.color1 .petal {
+  background-color: #ff007f;
+  border-color: #cc0066;
+}
+
+.flower-rosebud.color2 .petal {
+  background-color: #ff69b4;
+  border-color: #cc5490;
+}
+
+.flower-rosebud.color3 .petal {
+  background-color: #fffafa;
+  border-color: #f0e6e6;
+}
+
+/* Разные цвета для лепестков фоновых цветов */
+.background-flower.color1 .petal {
+  background-color: #add8e6;
+  border-color: #9cc2d4;
+  /* LightBlue */
+}
+
+.background-flower.color2 .petal {
+  background-color: #90ee90;
+  border-color: #7fcc7f;
+  /* LightGreen */
+}
+
+.background-flower.color3 .petal {
+  background-color: #dda0dd;
+  border-color: #c78ec7;
+  /* Plum */
+}
+
+.background-flower.color4 .petal {
+  background-color: #ffdab9;
+  border-color: #f2cfa8;
+  /* PeachPuff */
+}
+
+@keyframes fadeInFlower {
+  to {
+    opacity: 0.6;
+    /* Полупрозрачные */
+  }
+}
+
+/* Стили для сообщения ко Дню Матери */
+#mothers-day-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: rgba(255, 105, 180, 0.9);
+  /* HotPink с прозрачностью */
+  color: white;
+  padding: 30px 50px;
+  border-radius: 15px;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#mothers-day-message.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Контейнер для падающих роз */
+#falling-roses-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 5;
+  /* Между фоновыми цветами и основным контентом */
+  pointer-events: none;
+}
+
+.rose-petal {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+  /* Убедимся, что высота задана */
+  background-color: #ff6347;
+  /* Tomato red */
+  border-radius: 15px 0 15px 0;
+  /* Форма лепестка */
+  opacity: 0.8;
+  animation: fall 5s linear;
+  /* Время падения можно варьировать */
+  top: -40px;
+  /* Начинают падать сверху за экраном */
+}
+
+.rose-petal.pink {
+  background-color: #ffb6c1;
+  /* LightPink */
+}
+
+.rose-petal.dark-red {
+  background-color: #dc143c;
+  /* Crimson */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    /* Убедимся, что роза видима с начала */
+  }
+
+  100% {
+    /* Роза падает так, что ее верхний край оказывается на (100vh - высота розы) */
+    /* Таким образом, ее нижний край будет на 100vh (внизу экрана) */
+    transform: translateY(calc(100vh - 35px)) rotate(720deg);
+    opacity: 0.8;
+    /* Оставляем розу видимой */
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  animation: main-content-appear 1s forwards;
+  animation-delay: 3s;
+  /* Появляется после начала ухода ромашки */
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes main-content-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.mom-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  margin-bottom: 25px;
+}
+
+.social-links {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.social-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon.instagram:hover {
+  background-color: #e1306c;
+}
+
+.social-icon.instagram:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.social-icon.linkedin:hover {
+  background-color: #0077b5;
+}
+
+.social-icon.linkedin:hover img {
+  filter: brightness(0) invert(1);
+}
+
+#compliment-button {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #5cb85c;
+  /* Medium green */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+#compliment-button:hover {
+  background-color: #4cae4c;
+  /* Darker green on hover */
+  transform: translateY(-2px);
+}
+
+#compliment-button:active {
+  transform: translateY(0px);
+}
+
+#compliment-text {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #555;
+  min-height: 30px;
+  font-style: italic;
+  padding: 0 10px;
+}
